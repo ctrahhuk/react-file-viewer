@@ -60,12 +60,15 @@ export class PDFPage extends React.Component {
   }
 
   render() {
-    const { index } = this.props;
+    const { index, after, image } = this.props;
     return (
       <div key={`page-${index}`} className="pdf-canvas">
         {this.props.disableVisibilityCheck ? <canvas ref={node => this.canvas = node} width="670" height="870" /> : (
           <VisibilitySensor onChange={this.onChange} partialVisibility >
-            <canvas ref={node => this.canvas = node} width="670" height="870" />
+            ${image ?
+              <img src={image} style={{width: '670', height: '870'}}/> :
+              <canvas ref={node => this.canvas = node} width="670" height="870" />}
+            ${after}
           </VisibilitySensor>
             )
         }

@@ -63,17 +63,16 @@ export class PDFPage extends React.Component {
     const { index, after, image } = this.props;
     return (
       <div key={`page-${index}`} className="pdf-canvas">
-        {this.props.disableVisibilityCheck ? <canvas ref={node => this.canvas = node} width="670" height="870" /> : (
+        {this.props.disableVisibilityCheck ? (image ?
+            <img src={image} style={{width: '670', height: '870'}}/> :
+            <canvas ref={node => this.canvas = node} width="670" height="870" />) : (
           <VisibilitySensor onChange={this.onChange} partialVisibility >
-            <React.Fragment>
-              ${image ?
+              ${(image ?
                 <img src={image} style={{width: '670', height: '870'}}/> :
-                <canvas ref={node => this.canvas = node} width="670" height="870" />}
-              ${after}
-            </React.Fragment>
+                <canvas ref={node => this.canvas = node} width="670" height="870" />)}
           </VisibilitySensor>
-            )
-        }
+            )}
+        ${after}
       </div>
     );
   }
@@ -137,6 +136,8 @@ export default class PDFDriver extends React.Component {
         containerWidth={containerWidth}
         zoom={zoom * INCREASE_PERCENTAGE}
         disableVisibilityCheck={this.props.disableVisibilityCheck}
+        after={this.props.after}
+        image={this.props.image}
       />)
     ));
   }

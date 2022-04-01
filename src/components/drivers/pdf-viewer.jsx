@@ -67,12 +67,11 @@ export class PDFPage extends React.Component {
             <img src={image} style={{width: '670', height: '870'}}/> :
             <canvas ref={node => this.canvas = node} width="670" height="870" />) : (
           <VisibilitySensor onChange={this.onChange} partialVisibility >
-              ${(image ?
-                <img src={image} style={{width: '670', height: '870'}}/> :
-                <canvas ref={node => this.canvas = node} width="670" height="870" />)}
+            {image ? <img src={image} style={{width: '670', height: '870'}}/> :
+                <canvas ref={node => this.canvas = node} width="670" height="870" />}
           </VisibilitySensor>
             )}
-        ${after}
+        {after}
       </div>
     );
   }

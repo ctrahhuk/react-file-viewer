@@ -136,7 +136,7 @@ export default class PDFDriver extends React.Component {
         zoom={zoom * INCREASE_PERCENTAGE}
         disableVisibilityCheck={this.props.disableVisibilityCheck}
         after={this.props.after}
-        image={this.props.image}
+        image={(this.props.images || [])[i]}
       />)
     ));
   }
